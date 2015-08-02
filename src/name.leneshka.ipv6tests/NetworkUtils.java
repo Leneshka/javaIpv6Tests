@@ -1,9 +1,7 @@
 package name.leneshka.ipv6tests;
 
 import java.io.IOException;
-import java.net.NetworkInterface;
-import java.net.Socket;
-import java.net.SocketException;
+import java.net.*;
 import java.util.Collections;
 import java.util.Enumeration;
 
@@ -11,7 +9,7 @@ import static java.lang.System.out;
 
 public class NetworkUtils {
     public static final String MAC_HOST_IP = "2001::13";
-    public static final String MAC_OS_WI_FI_INTERFACE = "eth0";
+    public static final String MAC_OS_WI_FI_INTERFACE = "en0";
 
     public static final String IPv6_ONLY_SERVER_IP = "2001::7";
     public static final int IPv6_ONLY_SERVER_PORT = 22;
@@ -59,5 +57,39 @@ public class NetworkUtils {
                 }
             }
         }
+    }
+
+    public static boolean pingFromInterface(String name) throws IOException {
+        out.println("Pinging from interface " + name);
+
+        boolean connected = false;
+
+        NetworkInterface networkInterface = NetworkInterface.getByName(name);
+        if (networkInterface == null) {
+            out.println("No network interface for " + name);
+            return false;
+        }
+
+        Enumeration<InetAddress> inetAddresses = networkInterface.getInetAddresses();
+
+        while (inetAddresses.hasMoreElements()) {
+            InetAddress localAddr = inetAddresses.nextElement();
+            out.println("Using address " + localAddr);
+
+            Socket socket = null;
+            try {
+                socket = new Socket(IPv6_ONLY_SERVER_IP, IPv6_ONLY_SERVER_PORT, localAddr, 0);
+                out.println("Created!");
+                connected = true;
+            } catch (IOException e) {
+                out.println("Failed to connect");
+                e.printStackTrace(out);
+            } finally {
+                if (socket != null) {
+                    socket.close();
+                }
+            }
+        }
+        return connected;
     }
 }
