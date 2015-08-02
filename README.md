@@ -5,6 +5,7 @@ has some issues.
 This project is meant to provide instrumentation to examine those issues.
 
 Also see reported https://bugs.openjdk.java.net/browse/JDK-8076571
+Useful thread on stackoverflow: http://stackoverflow.com/questions/29103828/cant-connect-to-ipv6-only-host-from-java
 
 
 
@@ -22,6 +23,9 @@ Network settings configured via UI, in `Networking | <Connection name, 'Wired' f
 IPv6`. `IPv6: ON`, `Addresses: Manual`, `Address: 2001::7`, `Prefix : 64`. That's it. Do not forget to restart connection
 back at Networking dialog. Also do not forget that for IPv6 you need `ping6`, not usual
 `ping`.
+
+Network connection on VirtualBox is Bridged based on Wi-Fi. As turning Wi-Fi off makes difference, note that you'd need
+some other connected connection to test it. For example, connect Mac with cable, and base bridged connection on that one.
 
 Mac OS X computer also needs IPv6 enabled and IP provided at `Network Preferences | Advanced |
  TCP/IP` . Set up `Configure IPv6: Manually`, `IPv6 Address: 2001::13`, `Prefix Length: 64`.
