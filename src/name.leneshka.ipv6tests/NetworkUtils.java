@@ -1,6 +1,8 @@
 package name.leneshka.ipv6tests;
 
+import java.io.IOException;
 import java.net.NetworkInterface;
+import java.net.Socket;
 import java.net.SocketException;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -40,6 +42,22 @@ public class NetworkUtils {
         for (NetworkInterface subIf : Collections.list(subIfs)) {
             out.printf("\tSub Interface Display name: %s\n", subIf.getDisplayName());
             out.printf("\tSub Interface Name: %s\n", subIf.getName());
+        }
+    }
+
+    public static void pingFromDefaults() throws IOException {
+        Socket socket = null;
+        try {
+            socket = new Socket(IPv6_ONLY_SERVER_IP, IPv6_ONLY_SERVER_PORT);
+            out.println("Connected: " + socket.isConnected());
+        } finally {
+            if (socket != null) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
