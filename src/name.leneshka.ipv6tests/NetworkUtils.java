@@ -8,6 +8,12 @@ import java.util.Enumeration;
 import static java.lang.System.out;
 
 public class NetworkUtils {
+    public static final String MAC_HOST_IP = "2001::13";
+    public static final String MAC_OS_WI_FI_INTERFACE = "eth0";
+
+    public static final String IPv6_ONLY_SERVER_IP = "2001::7";
+    public static final int IPv6_ONLY_SERVER_PORT = 22;
+
 
     private NetworkUtils() {
     }
