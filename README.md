@@ -1,7 +1,11 @@
-# javaIpv6Tests
+# Java IPv6 tests
 
+It happens so that connection to IPv6-only hosts from java on Mac OS X Yosemite
+has some issues.
+This project is meant to provide instrumentation to examine those issues.
 
-Tests related to https://bugs.openjdk.java.net/browse/JDK-8076571
+Also see reported https://bugs.openjdk.java.net/browse/JDK-8076571
+
 
 
 This is test setup:
