@@ -4,8 +4,12 @@ It happens so that connection to IPv6-only hosts from java on Mac OS X Yosemite
 has some issues.
 This project is meant to provide instrumentation to examine those issues.
 
-Also see reported https://bugs.openjdk.java.net/browse/JDK-8076571
-Useful thread on stackoverflow: http://stackoverflow.com/questions/29103828/cant-connect-to-ipv6-only-host-from-java
+
+Some related links:
+- Reported java [bug](https://bugs.openjdk.java.net/browse/JDK-8076571).
+- Useful [thread](http://stackoverflow.com/questions/29103828/cant-connect-to-ipv6-only-host-from-java) on stackoverflow.
+- Useful [idea](https://youtrack.jetbrains.com/issue/WI-26878#comment=27-1069340)
+ on how to connect without providing exact interface.
 
 
 
