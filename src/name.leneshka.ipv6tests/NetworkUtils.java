@@ -2,6 +2,7 @@ package name.leneshka.ipv6tests;
 
 import java.io.IOException;
 import java.net.*;
+import java.nio.channels.SocketChannel;
 import java.util.Collections;
 import java.util.Enumeration;
 
@@ -86,6 +87,25 @@ public class NetworkUtils {
         Socket socket = null;
         try {
             socket = new Socket(IPv6_ONLY_SERVER_IP, IPv6_ONLY_SERVER_PORT, localAddr, 0);
+            out.println("Created!");
+            connected = true;
+        } catch (IOException e) {
+            out.println("Failed to connect");
+            e.printStackTrace(out);
+        } finally {
+            if (socket != null) {
+                socket.close();
+            }
+        }
+        return connected;
+    }
+
+    public static boolean pingWithSocketChannel() throws IOException {
+        boolean connected = false;
+        Socket socket = null;
+        try {
+            SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress(IPv6_ONLY_SERVER_IP, IPv6_ONLY_SERVER_PORT));
+            socket = socketChannel.socket();
             out.println("Created!");
             connected = true;
         } catch (IOException e) {

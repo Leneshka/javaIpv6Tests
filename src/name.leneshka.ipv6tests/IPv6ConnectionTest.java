@@ -69,4 +69,13 @@ public class IPv6ConnectionTest {
         boolean connected = NetworkUtils.pingFromLocalAddress(localAddress);
         assertTrue("Failed to connect", connected);
     }
+
+    /**
+     * Works! Thanks for idea https://youtrack.jetbrains.com/issue/WI-26878#comment=27-1069340
+     */
+    @Test
+    public void testConnectionWithSocketChannel() throws Exception {
+        boolean connected = NetworkUtils.pingWithSocketChannel();
+        assertTrue("Faile to connect", connected);
+    }
 }
