@@ -76,18 +76,24 @@ public class NetworkUtils {
             InetAddress localAddr = inetAddresses.nextElement();
             out.println("Using address " + localAddr);
 
-            Socket socket = null;
-            try {
-                socket = new Socket(IPv6_ONLY_SERVER_IP, IPv6_ONLY_SERVER_PORT, localAddr, 0);
-                out.println("Created!");
-                connected = true;
-            } catch (IOException e) {
-                out.println("Failed to connect");
-                e.printStackTrace(out);
-            } finally {
-                if (socket != null) {
-                    socket.close();
-                }
+            connected |= pingFromLocalAddress(localAddr);
+        }
+        return connected;
+    }
+
+    public static boolean pingFromLocalAddress(InetAddress localAddr) throws IOException {
+        boolean connected = false;
+        Socket socket = null;
+        try {
+            socket = new Socket(IPv6_ONLY_SERVER_IP, IPv6_ONLY_SERVER_PORT, localAddr, 0);
+            out.println("Created!");
+            connected = true;
+        } catch (IOException e) {
+            out.println("Failed to connect");
+            e.printStackTrace(out);
+        } finally {
+            if (socket != null) {
+                socket.close();
             }
         }
         return connected;
